@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GreenLease</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #afdeaf;
+        color: #316b39;
+    }
+    a {
+        text-decoration: none;
+    }
+    /* Navigation Bar */
+    nav {
+        background-color: #e8f3e8;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 2rem;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+    nav .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+    nav ul {
+        list-style: none;
+        display: flex;
+        gap: 1.5rem;
+    }
+    nav ul li {
+        cursor: pointer;
+        font-size: 1rem;
+    }
+    nav ul li:hover {
+        text-decoration: underline;
+    }
+    /* Search Bar */
+    .search-container {
+        position: relative;
+    }
+    .search-container input {
+        padding: 0.4rem 2rem 0.4rem 0.8rem;
+        border-radius: 20px;
+        border: none;
+        outline: none;
+        font-size: 0.9rem;
+    }
+    .search-container button {
+        position: absolute;
+        right: 0.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+    }
+    /* Hero Section */
+    .hero {
+        position: relative;
+        background-image: url('https://images.pexels.com/photos/2165688/pexels-photo-2165688.jpeg');
+        background-size: cover;
+        background-position: center;
+        height: 90vh;
+        color: white;
+        display: flex;
+        align-items: center;
+        padding: 2rem;
+    }
+    .hero-content {
+        max-width: 600px;
+    }
+    .hero-content h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+    .hero-content p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+    }
+    .hero-content a {
+        display: inline-block;
+        padding: 0.7rem 1.5rem;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 25px;
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+    }
+    .hero-content a:hover {
+        background: white;
+    }
+    /* Arrow Icon */
+    .arrow-icon {
+        position: absolute;
+        top: 1.5rem;
+        left: 1.5rem;
+        font-size: 2rem;
+        cursor: pointer;
+    }
+    a{
+       text-decoration: none; 
+    }
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">GREENLEASE</div>
+    <ul>
+        <a href="/OG.html"><li >Home</li></a>  
+        <a href="/tools.html"><li >Tools & Machineries</li></a> 
+        <a href="/vehicles.html"><li >Vehicles</li></a> 
+        <a href="/seeds & fertilizers.html"><li >Seeds & Fertilizers</li></a> 
+        <a href="/contact.html"><li >Contact</li></a> 
+        <a href="/about.html"><li >About</li></a> 
+    </ul>
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search...">
+        <button onclick="search()">🔍</button>
+    </div>
+</nav>
+
+<section class="hero" id="home">
+    <div class="arrow-icon" onclick="alert('Next Slide Coming Soon!')">➜</div>
+    <div class="hero-content">
+        <h1>HOME</h1>
+        <p>Soil Preparation | Planting | Harvesting | Irrigation</p>
+        <a href="#tools">Read more ➜</a>
+    </div>
+</section>
+
+<section id="tools" style="padding: 2rem; background-color: #c7e060; color: #f9f9f9; ">
+    <h2>Our Tools & Machineries</h2>
+    <p>Information about farming tools will go here...</p>
+</section>
+
+<section id="vehicles" style="padding: 2rem; background-color: #9abd41; color: #f9f9f9; "> 
+    <h2>Vehicles</h2>
+    <p>Information about farming vehicles will go here...</p>
+</section>
+
+<section id="seeds" style="padding: 2rem; background-color: #6e8d25; color: #f9f9f9; ">
+    <h2>Seeds & Fertilizers</h2>
+    <p>Information about seeds and fertilizers will go here...</p>
+</section>
+
+<section id="contact" style="padding: 2rem; background-color: #577124; color: #f9f9f9; ">
+    <h2>Contact Us</h2>
+    <p>Email: info@greenlease.com | Phone: +91-1234567890</p>
