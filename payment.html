@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greenlease - Order Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #d6e8d2;
+        }
+
+        header {
+            background-color: #eaf4e2;
+            padding: 15px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            background-color: #c8e0c1;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            font-size: 18px;
+            margin-top: 20px;
+            color: #2f4f2f;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #bbb;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        input[type="file"] {
+            padding: 5px;
+        }
+
+        label {
+            color: #2f4f2f;
+            font-weight: bold;
+        }
+
+        .payment-choice {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+
+        .payment-choice label {
+            font-weight: normal;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #2f4f2f;
+        }
+
+        .confirm-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .confirm-btn:hover {
+            background-color: #45a049;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header>GREENLEASE</header>
+
+    <div class="container">
+        <!-- Location Section -->
+        <h2>Location of Delivery</h2>
+        <input type="text" placeholder="Enter delivery address">
+
+        <!-- Document Verification Section -->
+        <h2>Document Verification</h2>
+        <input type="number" placeholder="Aadhaar Number">
+        <input type="text" placeholder="PAN Number">
+        <input type="tel" placeholder="Phone Number">
+        <label>Copy of Land Document:</label>
+        <input type="file">
+
+        <!-- Payment Section -->
+        <h2>Payment Portal</h2>
+        <div class="payment-choice">
+            <label><input type="radio" name="payment" value="cod"> Pay on Delivery</label>
+            <label><input type="radio" name="payment" value="online"> Online Payment</label>
+        </div>
+
+        <!-- Online Payment Options -->
+        <div id="onlineOptions" class="hidden">
+            <label>Select Online Payment Method</label>
+            <select id="paymentMethod">
+                <option value="">--Select--</option>
+                <option value="upi">UPI</option>
+                <option value="netbanking">Net Banking</option>
+                <option value="credit">Credit Card</option>
+                <option value="debit">Debit Card</option>
+            </select>
+        </div>
+
+        <!-- UPI Options -->
+        <div id="upiOptions" class="hidden">
+            <label>Select UPI App</label>
+            <select id="upiApp">
+                <option value="">--Select--</option>
+                <option value="https://www.phonepe.com/">PhonePe</option>
+                <option value="https://pay.google.com/">Google Pay</option>
+                <option value="https://paytm.com/">Paytm</option>
+            </select>
+        </div>
+
+        <!-- Net Banking Options -->
+        <div id="netbankingOptions" class="hidden">
+            <label>Select Your Bank</label>
+            <select id="bankSelect">
+                <option value="">--Select--</option>
+                <option value="https://www.indianbank.in/">Indian Bank</option>
+                <option value="https://bankofindia.co.in/">Bank of India</option>
+                <option value="https://sbi.co.in/">State Bank of India</option>
+                <option value="https://canarabank.com/">Canara Bank</option>
+                <option value="https://www.iob.in/">Indian Overseas Bank</option>
+                <option value="https://www.unionbankofindia.co.in/">Union Bank of India</option>
+                <option value="https://www.bankofbaroda.in/">Bank of Baroda</option>
+            </select>
+        </div>
+
+        <!-- Card Payment Options -->
+        <div id="cardOptions" class="hidden">
+            <input type="text" placeholder="Account Holder Name">
+            <input type="text" placeholder="Card Number">
+            <input type="text" placeholder="CVV">
+            <input type="text" placeholder="Expiry Date (MM/YY)">
+        </div>
+
+        <!-- Confirm Order Button -->
+        <button class="confirm-btn" id="confirmBtn">Confirm Order</button>
+    </div>
+
+    <script>
+        const paymentRadios = document.querySelectorAll('input[name="payment"]');
+        const onlineOptions = document.getElementById('onlineOptions');
+        const paymentMethod = document.getElementById('paymentMethod');
+        const upiOptions = document.getElementById('upiOptions');
+        const netbankingOptions = document.getElementById('netbankingOptions');
+        const cardOptions = document.getElementById('cardOptions');
+        const confirmBtn = document.getElementById('confirmBtn');
+
+        paymentRadios.forEach(radio => {
+            radio.addEventListener('change', () => {
+                if (radio.value === 'online') {
+                    onlineOptions.classList.remove('hidden');
+                } else {
+                    onlineOptions.classList.add('hidden');
+                    upiOptions.classList.add('hidden');
+                    netbankingOptions.classList.add('hidden');
+                    cardOptions.classList.add('hidden');
+                }
+            });
+        });
+
+        paymentMethod.addEventListener('change', () => {
+            upiOptions.classList.add('hidden');
+            netbankingOptions.classList.add('hidden');
+            cardOptions.classList.add('hidden');
+
+            if (paymentMethod.value === 'upi') {
+                upiOptions.classList.remove('hidden');
+            } else if (paymentMethod.value === 'netbanking') {
+                netbankingOptions.classList.remove('hidden');
+            } else if (paymentMethod.value === 'credit' || paymentMethod.value === 'debit') {
+                cardOptions.classList.remove('hidden');
+            }
+        });
+
+        confirmBtn.addEventListener('click', () => {
+            if (paymentMethod.value === 'upi') {
+                const upiApp = document.getElementById('upiApp').value;
+                if (upiApp) window.location.href = upiApp;
+            } else if (paymentMethod.value === 'netbanking') {
+                const bank = document.getElementById('bankSelect').value;
+                if (bank) window.location.href = bank;
+            } else {
+                alert("Order Confirmed!");
+            }
+        });
+    </script>
+
+</body>
+</html>
